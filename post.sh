@@ -17,7 +17,7 @@ while read friend; do
         if [ "$friend" == "$2" ]; then
 		./P.sh "$1"
 		datetime=$(date +"%Y-%m-%d %T")	
-		echo "$datetime - $2 : $3" >> "$1/wall" >&1
+		echo "$datetime - $2: $3" >> "$1/wall" >&1
 		echo Message "$3" sent to "$1" from "$2"! >&1
 		sleep 5
 		./V.sh "$1"
