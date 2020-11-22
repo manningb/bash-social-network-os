@@ -1,0 +1,14 @@
+{
+  "tests": [
+    {
+      "name": "Test script",
+      "setup": "wget -q csserver.ucd.ie/~thomas/test_script.py -O test_script.py",
+      "run": "python3 test_script.py",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 1,
+      "points": null
+    }
+  ]
+}
