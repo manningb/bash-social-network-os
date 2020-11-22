@@ -21,5 +21,4 @@ done <"$1/friends"
 ./P.sh "$1"
 echo "$2" >>"$1/friends" >&1
 echo "$2 added as friend of user $1"
-sleep 5
 ./V.sh "$1"
