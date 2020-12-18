@@ -1,33 +1,31 @@
 #!/bin/bash
 
+mkfifo server.pipe
+trap "rm server.pipe" EXIT #always remove server.pipe on EXIT
 while true; do
-	read input
-	input=($input)
-	request=${input[0]}
-	case "$request" in
-		create)
-			./create.sh ${input[1]}
-			# do something 
+        read -r input < server.pipe
+	input=($input) #convert input to array
+	client_pipe="${input[0]}.pipe"
+        request="${input[1]}" 
+	 case "$request" in
+                create)
+                        ./create.sh "${input[2]}" &> "$client_pipe" & sleep 1
+                        ;;
+                add)
+                        ./add.sh "${input[2]}" "${input[3]}" &> "$client_pipe" & sleep 1 
+                        ;;
+                post)
+                        ./post.sh "${input[2]}" "${input[3]}" "${input[@]:4}" &> "$client_pipe" & sleep 1
 			;;
-		add)
-			./add.sh ${input[1]} ${input[2]}
-			# do something 
+                show)
+                        ./show.sh "${input[2]}" &> "$client_pipe" & sleep 1
 			;;
-		post)
-			./post.sh ${input[1]} ${input[2]} ${input[3]}
-			# do something 
-			;;
-		show)
-			./show.sh ${input[1]}
-			# do something
-			;;
-		shutdown)
-			echo "Shutting down server.."
-			exit 0
-			# do something 
-			;;
-		*)
-			echo "Error: bad request"
-			exit 1
-	esac
+                shutdown)
+                        echo "Shutting down server.." &> "$client_pipe"  & sleep 1
+                        exit 0
+                        ;;
+                *)
+                        echo "Error: bad request" &> "$client_pipe" & sleep 1
+                        #exit 1
+        esac
 done

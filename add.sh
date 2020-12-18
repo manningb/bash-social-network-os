@@ -1,24 +1,30 @@
 #!/bin/bash
+# add.sh
 
+# takes :wq
+
+
+#
 if [ ! $# -eq 2 ]; then
-        echo "This script requires 2 arguments" >&2
+        echo "Error: This script requires 2 arguments" >&2
         echo "usage: $0 user friend" >&2
         exit 1
 elif [ ! -e "$1" ]; then
-	echo "User $1 does not exist" >&2
+	echo "Error: User $1 does not exist" >&2
 	exit 1
 elif [ ! -e "$2" ]; then
-	echo "Friend $2 does not exist" >&2
+	echo "Error: Friend $2 does not exist" >&2
 	exit 1
 fi
 
 while read friend; do
 	if [ "$friend" == "$2" ]; then
-		echo "$2 is already a friend of $1" >&2
+		echo "Error: $2 is already a friend of $1" >&2
 		exit 1
 	fi
 done <"$1/friends"
-./P.sh "$1"
+
+./P.sh "$1/friends"
 echo "$2" >>"$1/friends" >&1
-echo "$2 added as friend of user $1"
-./V.sh "$1"
+echo "OK: $2 added as friend of user $1"
+./V.sh "$1/friends"

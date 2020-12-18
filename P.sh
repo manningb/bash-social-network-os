@@ -5,11 +5,15 @@ if [ $# -eq 2 ]; then
 		do
 			sleep 0
 		done
+		exit 0
 elif [ $# -eq 1 ]; then
-	while ! ln "$0" "lock.sh" > /dev/null ; 
+	while ! ln "$1" "$1_lock.sh" 2> /dev/null ; 
 		do
-			sleep 0
+			echo $0
+			sleep 1
 		done
+		exit 0
 else
-	echo Please enter only one arguement
+	echo Error: Please enter either one or two arguments
+	exit 1
 fi 

@@ -7,10 +7,10 @@ if [ $# -eq 2 ]; then
 		echo "$1" does not exist
 	fi
 elif [ $# -eq 1 ]; then
-	if [ -f "lock.sh" ]; then
-		rm "lock.sh"
+	if [ -f "$1_lock.sh" ]; then
+		rm "$1_lock.sh"
 	else
-		echo "lock.sh" does not exist
+		echo "$1_lock.sh" does not exist
 	fi
 else
 	echo Please enter only one arguement
