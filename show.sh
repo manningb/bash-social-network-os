@@ -1,17 +1,19 @@
 #!/bin/bash
 
+user="$1"
+
 if [ ! $# -eq 1 ]; then
         echo "Error: This script requires 1 argument" >&2
         echo "usage: $0 user" >&2
         exit 1
-elif [ ! -e "$1" ]; then
-        echo "Error: User $1 not found" >&2
+elif [ ! -e "$user" ]; then
+        echo "Error: User $user not found" >&2
         exit 1
 fi
 
 echo "wallStart"
-while read post; do
+while read -r post; do
 	echo "$post"
-done <"$1/wall"
+done <"$user/wall"
 echo "wallEnd"
 exit 0

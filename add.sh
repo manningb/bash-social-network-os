@@ -1,30 +1,29 @@
 #!/bin/bash
 # add.sh
 
-# takes :wq
+user="$1"
+friend="$2"
 
-
-#
 if [ ! $# -eq 2 ]; then
         echo "Error: This script requires 2 arguments" >&2
         echo "usage: $0 user friend" >&2
         exit 1
-elif [ ! -e "$1" ]; then
-	echo "Error: User $1 does not exist" >&2
+elif [ ! -e "$user" ]; then
+	echo "Error: User $user does not exist" >&2
 	exit 1
-elif [ ! -e "$2" ]; then
-	echo "Error: Friend $2 does not exist" >&2
+elif [ ! -e "$friend" ]; then
+	echo "Error: Friend $friend does not exist" >&2
 	exit 1
 fi
 
-while read friend; do
-	if [ "$friend" == "$2" ]; then
-		echo "Error: $2 is already a friend of $1" >&2
+while read -r user_friend; do
+	if [ "$user_friend" == "$friend" ]; then
+		echo "Error: $friend is already a friend of $user" >&2
 		exit 1
 	fi
-done <"$1/friends"
+done <"$user/friends"
 
-./P.sh "$1/friends"
-echo "$2" >>"$1/friends" >&1
-echo "OK: $2 added as friend of user $1"
-./V.sh "$1/friends"
+./P.sh "$user/friends"
+echo "$friend" >>"$user/friends" >&1
+echo "OK: $friend added as friend of user $user"
+./V.sh "$user/friends"

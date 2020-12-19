@@ -1,19 +1,16 @@
 #!/bin/bash
 
-if [ $# -eq 2 ]; then
-	while ! ln "$1/$2" "$1/lock.sh" > /dev/null ; 
-		do
-			sleep 0
-		done
-		exit 0
-elif [ $# -eq 1 ]; then
+if [ ! $# -eq 1 ]; then
+	echo "Usage $0 file_to_lock"
+	exit 1
+elif [ ! -e "$1" ]; then
+	echo "File to be locked must exit"
+	exit 2
+else
 	while ! ln "$1" "$1_lock.sh" 2> /dev/null ; 
 		do
 			echo $0
 			sleep 1
 		done
 		exit 0
-else
-	echo Error: Please enter either one or two arguments
-	exit 1
 fi 
