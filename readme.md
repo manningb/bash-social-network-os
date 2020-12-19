@@ -233,6 +233,3 @@ To check if a request was valid by a client, I needed to check two things: wheth
 # Conclusion
 
 In the above I have outlined the requirements of the Social Network System project in Bash, along with how it was implemented with each of the scripts and finally showed some of the challenges I faced while creating the system. Overall, creating this complex system of scripts helped me to understand the power of the tools that I learned in the lectures and the labs. I got the opportunity to use each of the labs together to create a functional system.
-
-8
-```
