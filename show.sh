@@ -1,4 +1,6 @@
 #!/bin/bash
+# show.sh
+# shows all the posts on a user's wall
 
 user="$1"
 
@@ -8,7 +10,7 @@ if [ ! $# -eq 1 ]; then
         exit 1
 elif [ ! -e "$user" ]; then
         echo "Error: User $user not found" >&2
-        exit 1
+        exit 2
 fi
 
 echo "wallStart"

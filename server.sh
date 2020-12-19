@@ -1,4 +1,6 @@
 #!/bin/bash
+# server.sh
+# takes requests from clients are returns the output
 
 if [ -e server.pipe ]; then
         echo server is already in use
@@ -8,8 +10,7 @@ else
     trap "rm server.pipe" EXIT #always remove server.pipe on EXIT
     while true; do
             read -ra input < server.pipe
-            #input=($input) #convert input to array
-            client_pipe="${input[0]}.pipe"
+	    client_pipe="${input[0]}.pipe"
 	    request="${input[1]}"
 	    user="${input[2]}"
             case "$request" in
@@ -31,7 +32,6 @@ else
                             ;;
                     *)
                             echo "Error: bad request" &> "$client_pipe" & sleep 1
-                            #exit 1
             esac
     done
 fi

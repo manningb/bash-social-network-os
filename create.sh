@@ -1,4 +1,6 @@
 #!/bin/bash
+# create.sh
+# creates a new user and their wall and friends files
 
 user="$1"
 
@@ -8,12 +10,12 @@ if [ ! $# -eq 1 ]; then
 	exit 1
 elif [ -d "$user" ]; then
 	echo "Error: User $user already created." >&2
-	exit 1 
+	exit 2
 fi
 
-./P.sh "create.sh"
+./P.sh "$0"
 mkdir "$user"
 touch "$user/wall" "$user/friends"
 echo "OK: User folder and files created for $user"
-./V.sh "create.sh"
+./V.sh "$0"
 exit 0

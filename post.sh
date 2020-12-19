@@ -1,4 +1,6 @@
 #!/bin/bash
+# post.sh
+# posts a message to a users wall from another user
 
 receiver="$1"
 sender="$2"
@@ -11,10 +13,10 @@ if [ $# -lt 3 ]; then
         exit 1
 elif [ ! -e "$receiver" ]; then
         echo "Error: Receiver $receiver not found" >&2
-        exit 1
+        exit 2
 elif [ ! -e "$sender" ]; then
         echo "Error: Sender $sender not found" >&2
-        exit 1
+        exit 2
 fi
 
 while read -r friend; do
