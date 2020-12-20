@@ -6,11 +6,11 @@ if [ ! $# -eq 1 ]; then
 	echo "usage: $0 locked_file"
 	exit 1
 else
-	if [ -f "$1_lock.sh" ]; then
-		rm "$1_lock.sh"
+	if [ -e "$1-lock.sh" ]; then
+		rm "$1-lock.sh"
 		exit 0
 	else
-		echo "$1_lock.sh" does not exist
+		echo "$1-lock.sh" does not exist
 		exit 2
 	fi
 fi 
