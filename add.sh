@@ -26,5 +26,5 @@ done <"$user/friends"
 
 ./P.sh "$user/friends"
 echo "$friend" >>"$user/friends" >&1
-echo "OK: $friend added as friend of user $user"
 ./V.sh "$user/friends"
+echo "OK: $friend added as friend of user $user"

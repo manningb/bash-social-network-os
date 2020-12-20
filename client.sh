@@ -31,7 +31,7 @@ case "$request" in
 		fi
 		;;	
 	post)
-		if [ ! "$#" -lt 4 ]; then
+		if [ "$#" -lt 4 ]; then
 			echo "Error: This request requires three arguments"
 			echo "usage: $0 clientid $request recevier sender message"
 			exit 1
@@ -56,8 +56,7 @@ case "$request" in
 		exit 1
 		;;
 esac
-# this ensures that only one client id can be used at a time
-# once a previous client finishes running the next client in the queue can run
+
 ./P.sh "$client"
 if [ -e "$client.pipe" ]; then
         echo "Error: Client $client in use"
@@ -67,9 +66,9 @@ else
 	mkfifo "$client.pipe"
 fi
 ./V.sh "$client"
-#echo after v
+
 echo "$full_request" >> server.pipe
-#echo after server.pipe
+
 while read -r input; do
 	echo "$input"	
 done < "$client.pipe"
