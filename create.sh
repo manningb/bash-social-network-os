@@ -8,14 +8,17 @@ if [ ! $# -eq 1 ]; then
 	echo "Error: This scripts requires 1 argument" >&2
 	echo "usage: $0 user"
 	exit 1
-elif [ -d "$user" ]; then
+fi
+
+./P.sh "$user-create"
+if [ -d "$user" ]; then
 	echo "Error: User $user already created." >&2
 	exit 2
 fi
+./V.sh "$user-create"
 
-./P.sh "$0"
 mkdir "$user"
 touch "$user/wall" "$user/friends"
 echo "OK: User folder and files created for $user"
-./V.sh "$0"
+
 exit 0
