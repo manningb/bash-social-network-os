@@ -13,6 +13,7 @@ fi
 ./P.sh "$user-create"
 if [ -d "$user" ]; then
 	echo "Error: User $user already created." >&2
+	./V.sh "$user-create"
 	exit 2
 fi
 ./V.sh "$user-create"
