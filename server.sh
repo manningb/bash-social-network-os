@@ -15,23 +15,23 @@ else
 	    user="${input[2]}"
             case "$request" in
                     create)
-                            ./create.sh "$user" &>> "$client_pipe" & sleep 1
+                            ./create.sh "$user" &>> "$client_pipe" #& sleep 1
                             ;;
                     add)
-                            ./add.sh "$user" "${input[3]}" &>> "$client_pipe" & sleep 1
+                            ./add.sh "$user" "${input[3]}" &>> "$client_pipe" #& sleep 1
                             ;;
                     post)
-                            ./post.sh "$user" "${input[3]}" "${input[@]:4}" &>> "$client_pipe" & sleep 1
+                            ./post.sh "$user" "${input[3]}" "${input[@]:4}" &>> "$client_pipe" #& sleep 1
                             ;;
                     show)
-                            ./show.sh "$user" &>> "$client_pipe" & sleep 1
+                            ./show.sh "$user" &>> "$client_pipe" #& sleep 1
                             ;;
                     shutdown)
-                            echo "Shutting down server.." &>> "$client_pipe"  & sleep 1
+                            echo "Shutting down server.." &>> "$client_pipe" # & sleep 1
                             exit 0
                             ;;
                     *)
-                            echo "Error: bad request" &>> "$client_pipe" & sleep 1
+                            echo "Error: bad request" &>> "$client_pipe" #& sleep 1
             esac
     done
 fi

@@ -60,7 +60,7 @@ esac
 # once a previous client finishes running the next client in the queue can run
 ./P.sh "$client"
 if [ -e "$client.pipe" ]; then
-        echo "Error: Client in use"
+        echo "Error: Client $client in use"
 	./V.sh "$client"
 	exit 2
 else

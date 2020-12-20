@@ -11,8 +11,7 @@ elif [ ! -e "$0" ]; then
 else
 	while ! ln "$0" "$1-lock.sh" 2> /dev/null;
 		do
-			echo sleeping
-			sleep 1
+			sleep 0
 		done
 		exit 0
 fi 
